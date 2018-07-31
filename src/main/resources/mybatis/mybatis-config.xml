@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="jdbc.properties" />
+    <settings>
+        <setting name="logImpl" value="SLF4J"/>
+        <!--<setting name="cacheEnabled" value="true" />-->
+    </settings>
+    <typeHandlers>
+       <!-- <package name="com.princeli.mybatis.handler"/>-->
+        <!--<typeHandler handler="com.princeli.mybatis.handler.ExampleTypeHandler"/>-->
+    </typeHandlers>
+    <plugins>
+        <plugin interceptor="com.princeli.mybatis.plugins.ExamplePlugin">
+        </plugin>
+        <plugin interceptor="com.princeli.mybatis.plugins.ExecutorPlugin">
+        </plugin>
+        <plugin interceptor="com.princeli.mybatis.plugins.StatementHandlerPlugin">
+        </plugin>
+        <plugin interceptor="com.princeli.mybatis.plugins.ParameterHandlerPlugin">
+        </plugin>
+        <plugin interceptor="com.princeli.mybatis.plugins.ResultSetHandlerPlugin">
+        </plugin>
+    </plugins>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="xml/PostsMapper.xml"/>
+    </mappers>
+
+</configuration>
