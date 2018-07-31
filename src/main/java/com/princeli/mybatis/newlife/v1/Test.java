@@ -1,14 +1,10 @@
 package com.princeli.mybatis.newlife.v1;
-
-import lombok.Data;
-
 /**
  * @program: mybatis-demo
  * @description: ${description}
  * @author: ly
  * @create: 2018-07-31 09:27
  **/
-@Data
 public class Test {
     private Integer id;
 
@@ -24,5 +20,29 @@ public class Test {
 
     public Test() {
 
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getNums() {
+        return nums;
+    }
+
+    public void setNums(Integer nums) {
+        this.nums = nums;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
