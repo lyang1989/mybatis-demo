@@ -61,12 +61,29 @@ public class MyBatisMain {
         sqlSession3.close();
     }
 
-    public static void main(String[] args) throws Exception {
-
+    /**
+     * 缓存验证
+     */
+    public static void cacheVerify() throws Exception {
         SqlSession sqlSession =getSqlSession();
         PostsMapper postsMapper = sqlSession.getMapper(PostsMapper.class);
         Posts posts1 = postsMapper.selectByPrimaryKey(2);
-        System.out.println(posts1);
+        System.out.println("posts1:"+posts1);
+        Posts posts2 = postsMapper.selectByPrimaryKey(2);
+        System.out.println("posts2:"+posts2);
+        System.out.println(posts1.equals(posts2));
+    }
+
+
+    public static void main(String[] args) throws Exception {
+            cacheVerify();
+
+//        SqlSession sqlSession =getSqlSession();
+//        PostsMapper postsMapper = sqlSession.getMapper(PostsMapper.class);
+//        Posts posts1 = postsMapper.selectByPrimaryKey(2);
+//        System.out.println(posts1);
+
+
 
         //add
 //        Posts posts = new Posts();
