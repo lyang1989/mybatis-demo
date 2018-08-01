@@ -1,9 +1,9 @@
 package com.princeli.mybatis.beans;
-
 import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @ToString
 public class Posts implements Serializable {
@@ -14,6 +14,8 @@ public class Posts implements Serializable {
     private Integer blogId;
 
     private Date createTime;
+
+    private List<Comments> comments;
 
     private static final long serialVersionUID = 1L;
 
@@ -47,5 +49,13 @@ public class Posts implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
     }
 }

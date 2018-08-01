@@ -5,25 +5,32 @@
 <configuration>
     <properties resource="jdbc.properties" />
     <settings>
-        <setting name="logImpl" value="SLF4J"/>
+        <!-- 打开延迟加载的开关 -->
+        <setting name="lazyLoadingEnabled" value="true" />
+        <!-- 将积极加载改为消极加载即按需加载 -->
+        <setting name="aggressiveLazyLoading" value="false" />
+        <!--<setting name="logImpl" value="SLF4J"/>-->
         <!--<setting name="cacheEnabled" value="true" />-->
+        <setting name="proxyFactory" value="CGLIB" />
+
+
     </settings>
     <typeHandlers>
        <!-- <package name="com.princeli.mybatis.handler"/>-->
         <!--<typeHandler handler="com.princeli.mybatis.handler.ExampleTypeHandler"/>-->
     </typeHandlers>
-    <plugins>
+    <!--<plugins>
         <plugin interceptor="com.princeli.mybatis.plugins.ExamplePlugin">
         </plugin>
-        <!--<plugin interceptor="com.princeli.mybatis.plugins.ExecutorPlugin">
+        <plugin interceptor="com.princeli.mybatis.plugins.ExecutorPlugin">
         </plugin>
         <plugin interceptor="com.princeli.mybatis.plugins.StatementHandlerPlugin">
         </plugin>
         <plugin interceptor="com.princeli.mybatis.plugins.ParameterHandlerPlugin">
         </plugin>
         <plugin interceptor="com.princeli.mybatis.plugins.ResultSetHandlerPlugin">
-        </plugin>-->
-    </plugins>
+        </plugin>
+    </plugins>-->
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>

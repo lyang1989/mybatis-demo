@@ -63,8 +63,9 @@ public class MyBatisMain {
 
     /**
      * 缓存验证
+     * @throws Exception
      */
-    public static void cacheVerify() throws Exception {
+    public static void cacheVerifyTest() throws Exception {
         SqlSession sqlSession =getSqlSession();
         PostsMapper postsMapper = sqlSession.getMapper(PostsMapper.class);
         Posts posts1 = postsMapper.selectByPrimaryKey(2);
@@ -74,15 +75,27 @@ public class MyBatisMain {
         System.out.println(posts1.equals(posts2));
     }
 
+    /**
+     * 延迟加载
+     * @throws Exception
+     */
+    public static void lazyLoadingTest() throws Exception {
+        SqlSession sqlSession =getSqlSession();
+        PostsMapper postsMapper = sqlSession.getMapper(PostsMapper.class);
+        System.out.println("-------查询----------");
+        Posts posts1 = postsMapper.selectByPrimaryKey(1);
+        System.out.println("-------休眠5s,延迟加载----------");
+        Thread.sleep(5000);
+        System.out.println(posts1.getComments());
+    }
+
+
 
     public static void main(String[] args) throws Exception {
-            cacheVerify();
-
-//        SqlSession sqlSession =getSqlSession();
-//        PostsMapper postsMapper = sqlSession.getMapper(PostsMapper.class);
-//        Posts posts1 = postsMapper.selectByPrimaryKey(2);
-//        System.out.println(posts1);
-
+        //cacheVerifyTest();
+        lazyLoadingTest();
+        //System.out.println(posts1);
+        //System.out.println(posts1.getComments().get(0));
 
 
         //add

@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.princeli.mybatis.mapper.PostsMapper">
+
   <resultMap id="BaseResultMap" type="com.princeli.mybatis.beans.Posts">
     <id column="pid" jdbcType="INTEGER" property="pid" />
     <result column="post_name" jdbcType="VARCHAR" property="postName" />
     <result column="blog_id" jdbcType="INTEGER" property="blogId" />
-    <result typeHandler="com.princeli.mybatis.handler.MyDateTypeHandler"  column="create_time" javaType="java.util.Date" property="createTime" />
+    <!--<result typeHandler="com.princeli.mybatis.handler.MyDateTypeHandler"  column="create_time" javaType="java.util.Date" property="createTime" />-->
+    <collection property="comments" ofType="com.princeli.mybatis.beans.Comments" select="selectComments" column="pid">
+      <id column="cid" jdbcType="INTEGER" property="cid"/>
+      <result column="content" jdbcType="VARCHAR" property="content"/>
+      <result column="pid" jdbcType="INTEGER" property="pid"/>
+    </collection>
+
   </resultMap>
-  <cache
+  <!--<cache
   eviction="FIFO"
   flushInterval="60000"
   size="512"
-  readOnly="true"/>
+  readOnly="true"/>-->
+
+  <select id="selectComments" parameterType="int" resultType="com.princeli.mybatis.beans.Comments">
+		select cid, content, pid from comments where pid=#{value}
+  </select>
 
   <sql id="Base_Column_List">
     pid, post_name, blog_id, create_time
